@@ -11,7 +11,8 @@ function nextScene(scene) {
   } else if (scene === 2) {
     storyElement.textContent = "You venture down the lava path and face scorching heat. What do you do next?";
     var rightButton = createButton("Jump over lava", 9);
-    appendButtons(leftButton, rightButton);
+    removeButton(leftButton);
+    appendButtons(null, rightButton);
   } else if (scene === 7) {
     storyElement.textContent = "You keep flying through the sky, enjoying the breathtaking view. What a remarkable journey!";
     removeButtons();
@@ -38,6 +39,12 @@ function appendButtons(leftButton, rightButton) {
   var gameContainer = document.getElementById("game-container");
   gameContainer.appendChild(leftButton);
   gameContainer.appendChild(rightButton);
+}
+
+function removeButton(button) {
+  if (button && button.parentNode) {
+    button.parentNode.removeChild(button);
+  }
 }
 
 function removeButtons() {
