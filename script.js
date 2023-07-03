@@ -1,14 +1,15 @@
+var currentScene = 0;
+
 function nextScene(scene) {
   var storyElement = document.getElementById("story");
+  var leftButton = document.getElementById("left-button");
 
   if (scene === 1) {
     storyElement.textContent = "You enter the sky path and soar through the clouds. What do you do next?";
-    var leftButton = createButton("Continue flying", 7);
     var rightButton = createButton("Go back", 8);
     appendButtons(leftButton, rightButton);
   } else if (scene === 2) {
     storyElement.textContent = "You venture down the lava path and face scorching heat. What do you do next?";
-    var leftButton = createButton("Go back", 8);
     var rightButton = createButton("Jump over lava", 9);
     appendButtons(leftButton, rightButton);
   } else if (scene === 7) {
@@ -16,7 +17,6 @@ function nextScene(scene) {
     removeButtons();
   } else if (scene === 8) {
     storyElement.textContent = "You go back and find yourself at the crossroads again. Which path will you choose?";
-    var leftButton = createButton("Go left", 1);
     var rightButton = createButton("Go right", 2);
     appendButtons(leftButton, rightButton);
   } else if (scene === 9) {
