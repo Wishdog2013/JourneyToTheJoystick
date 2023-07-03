@@ -3,6 +3,60 @@
 <head>
   <title>Journey through the Joystick</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    /* CSS styles here */
+  </style>
+  <script>
+    function nextScene(scene) {
+      var storyElement = document.getElementById("story");
+
+      if (scene === 1) {
+        storyElement.textContent = "You enter the sky path and soar through the clouds. What do you do next?";
+        var leftButton = createButton("Continue flying", 7);
+        var rightButton = createButton("Go back", 8);
+        appendButtons(leftButton, rightButton);
+      } else if (scene === 2) {
+        storyElement.textContent = "You venture down the lava path and face scorching heat. What do you do next?";
+        var leftButton = createButton("Go back", 8);
+        var rightButton = createButton("Jump over lava", 9);
+        appendButtons(leftButton, rightButton);
+      } else if (scene === 7) {
+        storyElement.textContent = "You keep flying through the sky, enjoying the breathtaking view. What a remarkable journey!";
+        removeButtons();
+      } else if (scene === 8) {
+        storyElement.textContent = "You go back and find yourself at the crossroads again. Which path will you choose?";
+        var leftButton = createButton("Go left", 1);
+        var rightButton = createButton("Go right", 2);
+        appendButtons(leftButton, rightButton);
+      } else if (scene === 9) {
+        storyElement.textContent = "You attempt to jump over the lava but fail. Your adventure ends here.";
+        removeButtons();
+      }
+    }
+
+    function createButton(text, scene) {
+      var button = document.createElement("button");
+      button.textContent = text;
+      button.addEventListener("click", function() {
+        nextScene(scene);
+      });
+      return button;
+    }
+
+    function appendButtons(leftButton, rightButton) {
+      var gameContainer = document.getElementById("game-container");
+      gameContainer.appendChild(leftButton);
+      gameContainer.appendChild(rightButton);
+    }
+
+    function removeButtons() {
+      var gameContainer = document.getElementById("game-container");
+      var buttons = gameContainer.getElementsByTagName("button");
+      for (var i = buttons.length - 1; i >= 0; i--) {
+        buttons[i].remove();
+      }
+    }
+  </script>
 </head>
 <body>
   <h1>Journey through the Joystick</h1>
@@ -11,7 +65,5 @@
     <button onclick="nextScene(1)">Go left</button>
     <button onclick="nextScene(2)">Go right</button>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
